@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F0F0F0;
+  --foreground: #000000;
+  --accent-red: #FF0000;
+  --accent-blue: #0000FF;
+  --accent-yellow: #FFFF00;
+  --accent-purple: #800080;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Courier New', Courier, monospace;
+}
+
+@layer components {
+  .brutalist-card {
+    @apply bg-white border-4 border-black p-4 relative;
+  }
+
+  .brutalist-btn {
+    @apply bg-black text-white uppercase font-bold py-2 px-4 border-2 border-black;
+    @apply hover:bg-white hover:text-black transition-none;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-black disabled:hover:text-white;
+  }
+
+  .brutalist-input {
+    @apply w-full border-[3px] border-black bg-white p-2 font-mono;
+    @apply focus:outline-none focus:ring-0;
+  }
+
+  .brutalist-heading {
+    @apply uppercase font-bold tracking-wider;
+  }
+}
