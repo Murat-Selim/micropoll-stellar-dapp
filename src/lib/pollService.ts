@@ -62,8 +62,8 @@ export class PollService {
     this.address = address;
   }
 
-  // @ts-ignore - SDK typing issues
-  private async signAndSend(tx: any): Promise<{ hash: string; result?: unknown }> {
+  // Use a generic type that accepts any signAndSend argument structure
+  private async signAndSend<T = unknown>(tx: { signAndSend: (options: T) => Promise<unknown> }): Promise<{ hash: string; result?: unknown }> {
     if (!this.walletSignTx) {
       throw new Error('Cüzdan bağlı değil. Lütfen cüzdanınızı bağlayın.');
     }
@@ -78,7 +78,7 @@ export class PollService {
       },
     });
 
-    return { hash: result.hash, result: result.result };
+    return { hash: (result as { hash: string }).hash, result: (result as { result?: unknown }).result };
   }
 
   async createPoll(
