@@ -1,6 +1,6 @@
 # MicroPoll - Stellar Soroban dApp
 
-A Sybil-resistant paid opinion platform built on Stellar blockchain using Soroban smart contracts. Users can create polls, vote on existing polls, and claim XLM rewards.
+A wallet-based polling platform built on Stellar blockchain using Soroban smart contracts. Users can create polls, vote on existing polls, and claim XLM rewards. One vote per wallet is enforced; this does not establish one vote per person or prevent someone from using multiple wallets.
 
 ## Features
 
@@ -65,6 +65,8 @@ micropoll/
 
 ## Development
 
+Copy `.env.example` to `.env.local` and replace the contract ID with your own deployed testnet contract. The environment values are public client configuration, not wallet private keys.
+
 Run the development server:
 
 ```bash
@@ -123,4 +125,22 @@ stellar contract deploy \
 
 ## License
 
-MIT
+[MIT](LICENSE).
+
+## Validation
+
+From the repository root:
+
+```sh
+npm run lint
+npm run build
+```
+
+For the Rust contract:
+
+```sh
+cd contracts/micro_poll
+cargo test
+```
+
+Contract tests live in `contracts/micro_poll/src/test.rs`. Install the Rust/Soroban toolchain required by the contract manifest; contract deployment additionally needs Stellar CLI. No frontend `npm test` script is declared. Use Stellar Testnet for the documented wallet flows; these instructions do not imply a smart-contract security audit.
